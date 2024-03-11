@@ -15,4 +15,9 @@ public class AppController {
     public String index2(){
         return "Bonjour bb bienvenue dans package";
     }
+
+    @GetMapping("/sonia") // nom de la page
+    public String flori(){
+        return "sonia bjr ";
+    }
 }
