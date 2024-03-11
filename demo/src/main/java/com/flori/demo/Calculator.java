@@ -21,10 +21,6 @@ public class Calculator {
         else
             return 0;
     }
-    // for a test by assertion
-    //public static boolean answer(int wert){
-     //   return wert == 12;
 
-   // }
 
 }
