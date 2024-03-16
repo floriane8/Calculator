@@ -77,6 +77,9 @@ public  class AverageController implements  Initializable {
 
     @FXML
     void delate(ActionEvent event) {
+        name.clear();
+        note.clear();
+        coefficient.clear();
 
     }
 
