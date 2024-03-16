@@ -1,23 +1,26 @@
 package com.flori.gradeapp;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
+import javafx.scene.layout.VBox;
 
-public abstract class AverageController {
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
+public  class AverageController implements  Initializable {
+    List<MatiereDto> matiereList = new ArrayList<>();
 
     @FXML
     private Button addSubject;
 
-
     @FXML
     private TextField calculAverage;
-
-
-    @FXML
-    private TableColumn<MatiereDto, Integer> coeffTable;
 
     @FXML
     private TextField coefficient;
@@ -28,17 +31,40 @@ public abstract class AverageController {
     @FXML
     private TextField name;
 
-    @FXML
-    private TableColumn<MatiereDto, String> nameTable;
 
     @FXML
     private TextField note;
 
     @FXML
-    private TableColumn<MatiereDto, Double> noteTable;
-
+    private TableView<MatiereDto> table;
     @FXML
-    private TableView<MatiereDto> tableUser;
+    private TableColumn<MatiereDto, String> nameColumn;
+    @FXML
+    private TableColumn<MatiereDto, String> noteColumn;
+    @FXML
+    private TableColumn<MatiereDto, String> coefColumn;
+
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        //connecter les colones du tableau et la liste de matiere
+        table.setEditable(false);
+
+        //creating of cologne
+        nameColumn.setCellValueFactory(param -> param.getValue().nameProperty());
+        coefColumn.setCellValueFactory(param -> param.getValue().coeffProperty());
+        noteColumn.setCellValueFactory(param -> param.getValue().noteProperty());
+
+        table.setItems(FXCollections.observableList(matiereList));
+    }
+
+
+
+
+
+
 
     @FXML
     void add(ActionEvent event) {
@@ -54,13 +80,8 @@ public abstract class AverageController {
     void delate(ActionEvent event) {
 
     }
-    @FXML
-    private Label welcomeText;
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
 
-    public abstract void start(Stage primaryStage);
+
+
 }
