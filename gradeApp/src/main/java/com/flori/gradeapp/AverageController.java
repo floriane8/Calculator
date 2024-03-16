@@ -1,6 +1,7 @@
 package com.flori.gradeapp;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public  class AverageController implements  Initializable {
-    List<MatiereDto> matiereList = new ArrayList<>();
+    ObservableList<MatiereDto> matiereList = FXCollections.observableList(new ArrayList<>());
 
     @FXML
     private Button addSubject;
@@ -57,18 +58,16 @@ public  class AverageController implements  Initializable {
         coefColumn.setCellValueFactory(param -> param.getValue().coeffProperty());
         noteColumn.setCellValueFactory(param -> param.getValue().noteProperty());
 
-        table.setItems(FXCollections.observableList(matiereList));
+        table.setItems(matiereList);
     }
-
-
-
-
-
 
 
     @FXML
     void add(ActionEvent event) {
-
+       matiereList.add(new MatiereDto( name.getText(),coefficient.getText(),note.getText()));
+       name.clear();
+       coefficient.clear();
+       note.clear();
     }
     @FXML
     void calcul(ActionEvent event) {
