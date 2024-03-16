@@ -1,16 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.AmbientLight?>
+<?import javafx.scene.ParallelCamera?>
+<?import javafx.scene.PerspectiveCamera?>
+<?import javafx.scene.PointLight?>
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.flori.gradeapp.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="733.0" prefWidth="780.0" style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="C:\Users\Lenovo\IdeaProjects\FirstProject\gradeApp\src\main\java\com\flori\gradeapp\HelloController.java">
+    <children>
+        <Label layoutX="83.0" layoutY="156.0" prefHeight="28.0" prefWidth="122.0" text="Subjectname">
+            <font>
+                <Font size="21.0" />
+            </font>
+        </Label>
+        <TextField fx:id="coefficient" layoutX="530.0" layoutY="188.0" prefHeight="38.0" prefWidth="202.0" />
+        <Label layoutX="582.0" layoutY="156.0" prefHeight="28.0" prefWidth="122.0" text="Coefficient">
+            <font>
+                <Font size="21.0" />
+            </font>
+        </Label>
+        <Label layoutX="356.0" layoutY="156.0" prefHeight="28.0" prefWidth="122.0" text="Note1">
+            <font>
+                <Font size="21.0" />
+            </font>
+        </Label>
+        <Label layoutX="249.0" layoutY="53.0" lineSpacing="2.0" prefHeight="43.0" prefWidth="270.0" text="Averaging Calculator" textFill="#0d0d0d" underline="true">
+            <font>
+                <Font name="Berlin Sans FB Bold" size="24.0" />
+            </font>
+            <effect>
+                <Lighting>
+                    <bumpInput>
+                        <Shadow />
+                    </bumpInput>
+                    <light>
+                        <Light.Distant />
+                    </light>
+                </Lighting>
+            </effect>
+        </Label>
+        <Label layoutX="277.0" layoutY="544.0" prefHeight="31.0" prefWidth="214.0" text="Weigted Average">
+            <font>
+                <Font size="21.0" />
+            </font>
+        </Label>
+        <Button fx:id="addSubject" layoutX="111.0" layoutY="251.0" mnemonicParsing="false" onAction="#add" prefHeight="31.0" prefWidth="226.0" text="+ add a new subject" textFill="#24c11b">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Button>
+        <TextField fx:id="calculAverage" layoutX="249.0" layoutY="576.0" onAction="#calcul" prefHeight="43.0" prefWidth="214.0" />
+        <TextField fx:id="name" layoutX="43.0" layoutY="188.0" prefHeight="38.0" prefWidth="202.0" />
+        <TextField fx:id="note" layoutX="291.0" layoutY="188.0" prefHeight="38.0" prefWidth="202.0" />
+        <Button fx:id="delateSubject" layoutX="390.0" layoutY="251.0" mnemonicParsing="false" onAction="#delate" prefHeight="31.0" prefWidth="226.0" text="Delate" textFill="#bf1b1d">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Button>
+        <Button layoutX="290.0" layoutY="636.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="132.0" text="Dowload" textFill="#ef6f14">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Button>
+        <Label layoutX="114.0" layoutY="666.0" prefHeight="43.0" prefWidth="510.0" text=".create or connect to your account if you want to share your data" textFill="#2d37a4">
+            <font>
+                <Font name="Berlin Sans FB" size="18.0" />
+            </font>
+        </Label>
+        <AmbientLight color="CHARTREUSE" lightOn="true" />
+        <ParallelCamera />
+        <PerspectiveCamera />
+        <PointLight color="CHARTREUSE" lightOn="true" />
+        <TableView fx:id="tableUser" layoutX="243.0" layoutY="324.0" prefHeight="200.0" prefWidth="226.0">
+            <columns>
+                <TableColumn fx:id="nameTable" prefWidth="75.0" text="Name" />
+                <TableColumn fx:id="noteTable" prefWidth="75.0" text="Note" />
+                <TableColumn fx:id="coeffTable" prefWidth="75.0" text="Coefficient" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>
