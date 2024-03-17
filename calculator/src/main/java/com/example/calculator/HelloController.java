@@ -35,34 +35,46 @@ public class HelloController {
     @FXML
     private Button substaction;
 
+    Calcul calcul=new Calcul();
+
     @FXML
     void add(ActionEvent event) {
-
+        double n=Double.parseDouble(nbr1.getText());
+        double m=Double.parseDouble(nbr2.getText());
+        double sol= calcul.addFunk(n,m);
+        result.setText(String.valueOf(sol));
     }
 
     @FXML
     void divide(ActionEvent event) {
+        double sol= calcul.divFunk(Double.parseDouble(nbr1.getText()),Double.valueOf(nbr2.getText()));
+        result.setText(String.valueOf(sol));
 
     }
 
     @FXML
     void exp(ActionEvent event) {
+        double sol= calcul.expFunk(Double.valueOf(nbr1.getText()),Double.valueOf(nbr2.getText()));
+        result.setText(String.valueOf(sol));
 
     }
 
     @FXML
     void mod(ActionEvent event) {
-
+        double sol= calcul.modFunk(Double.valueOf(nbr1.getText()),Double.valueOf(nbr2.getText()));
+        result.setText(String.valueOf(sol));
     }
 
     @FXML
     void mul(ActionEvent event) {
-
+        double sol= calcul.mulFunk(Double.valueOf(nbr1.getText()),Double.valueOf(nbr2.getText()));
+        result.setText(String.valueOf(sol));
     }
 
     @FXML
     void sub(ActionEvent event) {
-
+        double sol= calcul.subFunk(Double.valueOf(nbr1.getText()),Double.valueOf(nbr2.getText()));
+        result.setText(String.valueOf(sol));
     }
     @FXML
     private Label welcomeText;
