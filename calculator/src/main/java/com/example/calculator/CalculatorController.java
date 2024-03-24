@@ -172,7 +172,7 @@ public class CalculatorController {
         appendNummer("0");
     }
     public void buttonCommaClicked(ActionEvent actionEvent) {
-        appendNummer(",");
+        appendNummer(".");
     }
      public void buttonCloseParen(ActionEvent actionEvent) {
          appendNummer(")");
