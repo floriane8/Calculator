@@ -1,37 +1,94 @@
 package com.example.calculator;
+import java.util.Stack;
 
 public class Calcul {
 
-    public double addFunk(double a, double b){
-        return a+b;
-    }
 
-    public double subFunk(double a, double b){
-        return a-b;
-    }
 
-    public double mulFunk(double a, double b){
-        return a*b;
-    }
 
-    public double divFunk(double a, double b){
-        if(b!=0) {
-            return a / b;
+
+    public static double evaluer(String expression) {
+        Stack<Double> nombres = new Stack<>();
+        Stack<Character> operateurs = new Stack<>();
+
+        for (char caractere : expression.toCharArray()) {
+            if (Character.isDigit(caractere)) {  // if the charachter is a number
+                nombres.push(Double.parseDouble(String.valueOf(caractere)));
+            } else if (caractere == '(') {
+                operateurs.push(caractere);
+            } else if (caractere == ')') {
+                while (!operateurs.isEmpty() && operateurs.pop() != '(') {
+                    double operande2 = nombres.pop();
+                    double operande1 = nombres.pop();
+                    char operateur = operateurs.pop();
+                    nombres.push(effectuerOperation(operande1, operande2, operateur));
+                }
+                operateurs.pop(); // Retirer la parenthèse fermante  // i think it,s the opening brackets
+            } else if (estOperateur(caractere)) {
+                while (!operateurs.isEmpty() && priorite(caractere) <= priorite(operateurs.peek())) {
+                    double operande2 = nombres.pop();
+                    double operande1 = nombres.pop();
+                    char operateur = operateurs.pop();
+                    nombres.push(effectuerOperation(operande1, operande2, operateur));
+                }
+                operateurs.push(caractere);
+            }
         }
-        else return 0;
+
+        while (!operateurs.isEmpty()) {
+            double operande2 = nombres.pop();
+            double operande1 = nombres.pop();
+            char operateur = operateurs.pop();
+            nombres.push(effectuerOperation(operande1, operande2, operateur));
+        }
+
+        return nombres.pop();
     }
 
-    public double modFunk(double a, double b){
-        return a%b;
+    private static boolean estOperateur(char caractere) {
+        return caractere == '+' || caractere == '-' || caractere == '*' || caractere == '/'|| caractere =='e' ;
     }
-    public double expFunk(double a, double b){
-        double result=1;
-        while (b!=0){
-            result=result*a;
-            --b;
+
+    private static int priorite(char operateur) {
+        switch (operateur) {
+            case 'e':
+                return 2;
+            case '*':
+            case '/':
+                return 1;
+            default:
+                return 0;
         }
-        return result;
     }
+
+    private static double effectuerOperation(double operande1, double operande2, char operateur) {
+        switch (operateur) {
+            case '+':
+                return operande1 + operande2;
+            case '-':
+                return operande1 - operande2;
+            case '*':
+                return operande1 * operande2;
+            case '/':
+                if (operande2 == 0) {
+                    throw new IllegalArgumentException("Division par zéro");
+                }
+                return operande1 / operande2;
+            case '%':
+                return operande1% operande2;
+            case 'e':
+                double result=1;
+                while (operande2!=0){
+                    result=result*operande1;
+                    --operande2;
+                }
+                return result;
+
+            default:
+                throw new IllegalArgumentException("Opérateur invalide");
+        }
+    }
+
 
 
 

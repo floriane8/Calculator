@@ -14,6 +14,7 @@ public class CalculatorController {
 
     @FXML
     private Button closeParenthese;
+    @FXML
     private Button comma;
     @FXML
     private Button eight;
@@ -42,7 +43,7 @@ public class CalculatorController {
     @FXML
     private Button division;
     @FXML
-    private Button expo;
+    private Button e;
     @FXML
     private Button modulo;
     @FXML
@@ -59,49 +60,12 @@ public class CalculatorController {
     public void appendNummer(String nummer){
         String currentNummer=display.getText();
         display.setText(currentNummer+nummer);
+        results.clear();
     }
 
     Calcul calcul=new Calcul();
 
-    @FXML
-    void add(ActionEvent event) {
-       operator="+";
-       number1=Double.parseDouble(display.getText());
-       display.clear();
-    }
 
-    @FXML
-    void divide(ActionEvent event) {
-        operator="/";
-        number1=Double.parseDouble(display.getText());
-        display.clear();
-    }
-
-    @FXML
-    void exp(ActionEvent event) {
-        operator="exp";
-        number1=Double.parseDouble(display.getText());
-        display.clear();
-    }
-    @FXML
-    void mod(ActionEvent event) {
-        operator="%";
-        number1=Double.parseDouble(display.getText());
-        display.clear();
-    }
-    @FXML
-    void mul(ActionEvent event) {
-        operator="*";
-        number1=Double.parseDouble(display.getText());
-        display.clear();
-    }
-    @FXML
-    void sub(ActionEvent event) {
-        operator="-";
-        number1=Double.parseDouble(display.getText());
-        display.clear();
-    }
-    @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
@@ -115,30 +79,8 @@ public class CalculatorController {
     }
     @FXML
     void resultAction(ActionEvent event) {
-        nummer2=Double.parseDouble(display.getText());
-        double result=0;
-        switch (operator){
-            case "+":
-                result=calcul.addFunk(number1,nummer2);
-                break;
-            case "-":
-                result=calcul.subFunk(number1,nummer2);
-                break;
-            case "*":
-                result=calcul.mulFunk(number1,nummer2);
-                break;
-            case "/":
-                result=calcul.divFunk(number1,nummer2);
-                break;
-            case "%":
-                result=calcul.modFunk(number1,nummer2);
-                break;
-            case "exp":
-                result=calcul.expFunk(number1,nummer2);
-                break;
-        }
-        display.setText(String.format("%.2f",result));
-
+        String expresssion=display.getText();
+       double result= Calcul.evaluer(expresssion);
         results.setText(String.format("%.2f",result));
 
     }
@@ -170,14 +112,53 @@ public class CalculatorController {
         appendNummer("9");
     } public void button0Clicked(ActionEvent actionEvent) {
         appendNummer("0");
+
+
     }
     public void buttonCommaClicked(ActionEvent actionEvent) {
         appendNummer(".");
+
+
     }
-     public void buttonCloseParen(ActionEvent actionEvent) {
+     public void closeParenFunk(ActionEvent actionEvent) {
          appendNummer(")");
+         results.clear();
+
     }
-    public void buttonOpenParen(ActionEvent actionEvent) {
+    public void oppenParenFunk(ActionEvent actionEvent) {
         appendNummer("(");
+
+
     }
+
+
+    public void add(ActionEvent actionEvent) {
+        appendNummer("+");
+
+    } public void sub(ActionEvent actionEvent) {
+        appendNummer("-");
+
+
+    } public void mul(ActionEvent actionEvent) {
+        appendNummer("*");
+
+
+    }
+    public void div(ActionEvent actionEvent) {
+        appendNummer("/");
+
+
+    }
+    public void mod(ActionEvent actionEvent) {
+        appendNummer("%");
+
+
+    }
+    public void exp(ActionEvent actionEvent) {
+        appendNummer("e");
+
+
+    }
+
+
 }

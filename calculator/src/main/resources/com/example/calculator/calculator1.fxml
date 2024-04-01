@@ -38,9 +38,9 @@
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="30.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button fx:id="division" mnemonicParsing="false" onAction="#divide" text="/" />
+                  <Button fx:id="division" mnemonicParsing="false" onAction="#div" text="/" />
                   <Button fx:id="modulo" mnemonicParsing="false" onAction="#mod" text="\%" />
-                  <Button fx:id="expo" mnemonicParsing="false" onAction="#exp" text="exp" />
+                  <Button fx:id="e" mnemonicParsing="false" onAction="#exp" text="exp" />
                   <Button fx:id="four" mnemonicParsing="false" onAction="#button4Clicked" text="4" />
                   <Button fx:id="five" mnemonicParsing="false" onAction="#button5Clicked" text="5" />
                   <Button fx:id="six" mnemonicParsing="false" onAction="#button6Clicked" text="6" />
@@ -48,8 +48,8 @@
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="30.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button fx:id="openParenthe" mnemonicParsing="false" onAction="#buttonOpenParen" text="(" />
-                  <Button fx:id="closeParenthese" mnemonicParsing="false" onAction="#buttonCloseParen" text=")" />
+                  <Button fx:id="openParenthe" mnemonicParsing="false" onAction="#oppenParenFunk" text="(" />
+                  <Button fx:id="closeParenthese" mnemonicParsing="false" onAction="#closeParenFunk" text=")" />
                   <Button fx:id="comma" mnemonicParsing="false" onAction="#buttonCommaClicked" text="," />
                   <Button fx:id="zero" mnemonicParsing="false" onAction="#button0Clicked" text="0" />
                   <Button fx:id="seven" mnemonicParsing="false" onAction="#button7Clicked" text="7" />
