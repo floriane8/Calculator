@@ -10,29 +10,42 @@ public class Calcul {
     public static double evaluer(String expression) {
         Stack<Double> nombres = new Stack<>();
         Stack<Character> operateurs = new Stack<>();
+        StringBuilder currentNummer=new StringBuilder();
 
         for (char caractere : expression.toCharArray()) {
-            if (Character.isDigit(caractere)) {  // if the charachter is a number
-                nombres.push(Double.parseDouble(String.valueOf(caractere)));
-            } else if (caractere == '(') {
-                operateurs.push(caractere);
-            } else if (caractere == ')') {
-                while (!operateurs.isEmpty() && operateurs.pop() != '(') {
-                    double operande2 = nombres.pop();
-                    double operande1 = nombres.pop();
-                    char operateur = operateurs.pop();
-                    nombres.push(effectuerOperation(operande1, operande2, operateur));
-                }
-                operateurs.pop(); // Retirer la parenthèse fermante  // i think it,s the opening brackets
-            } else if (estOperateur(caractere)) {
-                while (!operateurs.isEmpty() && priorite(caractere) <= priorite(operateurs.peek())) {
-                    double operande2 = nombres.pop();
-                    double operande1 = nombres.pop();
-                    char operateur = operateurs.pop();
-                    nombres.push(effectuerOperation(operande1, operande2, operateur));
-                }
-                operateurs.push(caractere);
+            if (Character.isDigit(caractere)) {// if the charachter is a number
+                currentNummer.append(caractere);
             }
+            else {
+                if (currentNummer.length()>0) {
+                    nombres.push(Double.parseDouble(currentNummer.toString()));
+                    currentNummer.setLength(0);
+                }
+
+                if (caractere == '(') {
+                    operateurs.push(caractere);
+                } else if (caractere == ')') {
+                    while (!operateurs.isEmpty() && operateurs.pop() != '(') {
+                        double operande2 = nombres.pop();
+                        double operande1 = nombres.pop();
+                        char operateur = operateurs.pop();
+                        nombres.push(effectuerOperation(operande1, operande2, operateur));
+                    }
+                    operateurs.pop(); // Retirer la parenthèse fermante  // i think it,s the opening brackets
+                } else if (estOperateur(caractere)) {
+                    while (!operateurs.isEmpty() && priorite(caractere) <= priorite(operateurs.peek())) {
+                        double operande2 = nombres.pop();
+                        double operande1 = nombres.pop();
+                        char operateur = operateurs.pop();
+                        nombres.push(effectuerOperation(operande1, operande2, operateur));
+                    }
+                    operateurs.push(caractere);
+
+                }
+            }
+        }
+        if (currentNummer.length() > 0) {
+            nombres.push(Double.parseDouble(currentNummer.toString()));
         }
 
         while (!operateurs.isEmpty()) {
