@@ -1,12 +1,8 @@
-module com.example.calculator {
+module com.ydova.calculator {
     requires javafx.controls;
     requires javafx.fxml;
 
-    requires org.controlsfx.controls;
-    requires com.dlsc.formsfx;
-    requires net.synedra.validatorfx;
-    requires com.almasb.fxgl.all;
 
-    opens com.example.calculator to javafx.fxml;
-    exports com.example.calculator;
+    opens com.ydova.calculator to javafx.fxml;
+    exports com.ydova.calculator;
 }
